@@ -1,0 +1,2 @@
+# dynamite
+Python DNS server
