@@ -1,0 +1,3 @@
+
+class DynamiteException(Exception):
+    pass
