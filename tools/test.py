@@ -11,8 +11,8 @@ def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         s.connect(("127.0.0.1", 8888))
-        msg = Message()
-        s.send(msg.to_bytes())
+        message = Message()
+        s.send(message.to_bytes())
     finally:
         s.shutdown(socket.SHUT_RDWR)
         s.close()
