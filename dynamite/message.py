@@ -18,7 +18,7 @@ class RCode(enum.IntEnum):
 
 class Message:
 
-    def to_bytes():
+    def to_bytes(self):
         return b''
 
 
