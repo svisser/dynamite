@@ -27,7 +27,3 @@ def main(host, port):
     server.close()
     loop.run_until_complete(server.wait_closed())
     loop.close()
-
-
-if __name__ == '__main__':
-    main('::1', 8888)
