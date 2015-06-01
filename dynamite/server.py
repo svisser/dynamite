@@ -1,9 +1,21 @@
 import asyncio
 import ipaddress
 
+from dynamite.message import Message, MessageParser
+
 
 class TCPDNSProtocol(asyncio.Protocol):
-    pass
+
+    def __init__(self):
+        self.parser = MessageParser()
+
+    def connection_made(self, transport):
+        self.transport = transport
+
+    def data_received(self, data):
+        message = self.parser.parse(data)
+        response = Message()
+        self.transport.write(response.to_bytes())
 
 
 class UDPDNSProtocol(asyncio.DatagramProtocol):
