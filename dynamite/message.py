@@ -18,11 +18,10 @@ class RCode(enum.IntEnum):
 
 class Message:
 
+    @classmethod
+    def parse(self, data):
+        return None
+
     def to_bytes(self):
         return b''
 
-
-class MessageParser:
-
-    def parse(self, data):
-        return Message()

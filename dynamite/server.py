@@ -1,7 +1,7 @@
 import asyncio
 import ipaddress
 
-from dynamite.message import Message, MessageParser
+from dynamite.message import Message
 
 
 class TCPDNSProtocol(asyncio.Protocol):
