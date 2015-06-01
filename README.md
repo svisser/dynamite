@@ -1,5 +1,5 @@
-# Dynamite DNS
+# dynamite
 
 Python DNS server
 
-Fun fact: all(c in 'domain name system' for c in 'dynamite')
+Fun fact: `all(c in 'domain name system' for c in 'dynamite')`
