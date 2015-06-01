@@ -12,7 +12,7 @@ class UDPDNSProtocol(asyncio.DatagramProtocol):
 
 def main(host, port):
     local_addr = (ipaddress.ip_address(host).exploded, port)
-    
+
     loop = asyncio.get_event_loop()
     endpoint = loop.create_datagram_endpoint(UDPDNSProtocol, local_addr=local_addr)
     transport, _ = loop.run_until_complete(endpoint)
