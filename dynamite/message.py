@@ -1,4 +1,5 @@
 import enum
+import random
 
 
 class OPCODE(enum.IntEnum):
@@ -54,6 +55,26 @@ class QTYPE(enum.IntEnum):  # + TYPE
 
 
 class Message:
+
+    def __init__(self, id=None, is_response=False, opcode=OPCODE.QUERY,
+                 is_authoritative=False, is_truncated=False,
+                 is_recursion_desired=False, is_recursion_available=False,
+                 response_code=RCODE.NO_ERROR,
+                 questions=None, answers=None, authority=None, additional=None):
+        if id is None:
+            id = random.randint(0, 2 ** 16 + 1)
+        self.id = id
+        self.is_response = is_response
+        self.opcode = opcode
+        self.is_authoritative = is_authoritative
+        self.is_truncated = is_truncated
+        self.is_recursion_desired = is_recursion_desired
+        self.is_recursion_available = is_recursion_available
+        self.response_code = response_code
+        self.questions = questions or []
+        self.answers = answers or []
+        self.authority = authority or []
+        self.additional = additional or []
 
     @classmethod
     def parse(cls, data):
