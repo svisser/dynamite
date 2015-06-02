@@ -19,7 +19,7 @@ class RCode(enum.IntEnum):
 class Message:
 
     @classmethod
-    def parse(self, data):
+    def parse(cls, data):
         return None
 
     def to_bytes(self):
