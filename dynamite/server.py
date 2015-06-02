@@ -6,14 +6,11 @@ from dynamite.message import Message
 
 class TCPDNSProtocol(asyncio.Protocol):
 
-    def __init__(self):
-        self.parser = MessageParser()
-
     def connection_made(self, transport):
         self.transport = transport
 
     def data_received(self, data):
-        message = self.parser.parse(data)
+        message = Message.parse(data)
         response = Message()
         self.transport.write(response.to_bytes())
 
