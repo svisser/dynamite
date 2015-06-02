@@ -105,3 +105,21 @@ class Message:
             len(self.questions), len(self.answers),
             len(self.authority), len(self.additional),
         )
+
+
+class Question:
+
+    def __init__(self, name=None, type=None, class_=None):
+        self.name = name
+        self.type = type
+        self.class_ = class_
+
+
+class ResourceRecord:
+
+    def __init__(self, name=None, type=None, class_=None, ttl=None, data=None):
+        self.name = name
+        self.type = type
+        self.class_ = class_
+        self.ttl = ttl
+        self.data = data
