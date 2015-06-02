@@ -16,8 +16,11 @@ def main():
         s.send(message.to_bytes())
     finally:
         if s is not None:
-            s.shutdown(socket.SHUT_RDWR)
-            s.close()
+            try:
+                s.shutdown(socket.SHUT_RDWR)
+                s.close()
+            except socket.error:
+                pass
 
 
 if __name__ == '__main__':
