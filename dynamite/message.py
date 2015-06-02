@@ -1,5 +1,6 @@
 import enum
 import random
+import struct
 
 
 class OPCODE(enum.IntEnum):
@@ -81,5 +82,26 @@ class Message:
         return None
 
     def to_bytes(self):
-        return b''
+        try:
+            opcode_value = self.opcode.value
+        except AttributeError:
+            opcode_value = self.opcode
+        try:
+            response_code_value = self.response_code.value
+        except AttributeError:
+            response_code_value = self.response_code
 
+        bits = (
+            ((0 if self.is_response else 1) << 15) |
+            ((opcode_value) << 11) |
+            ((1 if self.is_authoritative else 0) << 10) |
+            ((1 if self.is_truncated else 0) << 9) |
+            ((1 if self.is_recursion_desired else 0) << 8) |
+            ((1 if self.is_recursion_available else 0) << 7) |
+            response_code_value
+        )
+        return struct.pack(
+            '!6H', self.id, bits,
+            len(self.questions), len(self.answers),
+            len(self.authority), len(self.additional),
+        )
