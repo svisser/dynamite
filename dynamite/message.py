@@ -64,6 +64,15 @@ class Message:
                  questions=None, answers=None, authority=None, additional=None):
         if id is None:
             id = random.randint(0, 2 ** 16 + 1)
+        if questions is None:
+            questions = []
+        if answers is None:
+            answers = []
+        if authority is None:
+            authority = []
+        if additional is None:
+            additional = []
+
         self.id = id
         self.is_response = is_response
         self.opcode = opcode
@@ -72,10 +81,10 @@ class Message:
         self.is_recursion_desired = is_recursion_desired
         self.is_recursion_available = is_recursion_available
         self.response_code = response_code
-        self.questions = questions or []
-        self.answers = answers or []
-        self.authority = authority or []
-        self.additional = additional or []
+        self.questions = questions
+        self.answers = answers
+        self.authority = authority
+        self.additional = additional
 
     @classmethod
     def parse(cls, data):
